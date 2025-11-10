@@ -6,6 +6,73 @@
     <title>Pet House </title>
 </head>
 <body>
-    
+    <!--  Loader Overlay (inside this body ) -->
+    <div
+      id="body-loader"
+      class="fixed w-full h-full z-50 flex items-center justify-center bg-white"
+    >
+      <span class="loading loading-bars loading-lg text-primary"></span>
+    </div>
+    <header>
+      <nav>
+        <div class="navbar bg-base-100 justify-around border-b">
+          <div class="flex gap-2">
+            <img class="h-6 w-8" src="./images/logo.webp" alt="" />
+            <a class="text-xl">Peddy</a>
+          </div>
+          <div class="hidden md:flex">
+            <ul class="menu menu-horizontal px-1">
+              <li><a>Home</a></li>
+              <li><a>Shop</a></li>
+              <li><a>Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Right: Profile & Dropdown Toggle -->
+          <div class="flex items-center gap-4">
+            <!-- Dropdown (visible on small screens only) -->
+            <div class="dropdown dropdown-end md:hidden">
+              <label tabindex="0" class="btn btn-ghost">
+                <!-- Menu Icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </label>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li><a>Home</a></li>
+                <li><a>Shop</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+            </div>
+
+              <!-- Profile Icon -->
+            <div class="p-2 rounded-full border">
+              <img
+                class="size-[24px]"
+                src="https://img.icons8.com/?size=100&id=47375&format=png&color=13131370"
+                alt="profile"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
 </body>
 </html>
