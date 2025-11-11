@@ -261,3 +261,18 @@ const sortAnimalPrice = () => {
     displyAnimales(allPets);
   }, 2000);
 };
+
+////////////////// datails
+/////////////////////////////////////////
+const loadanimalId = async (id) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+    );
+    const data = await res.json();
+    displayAnimaleDatails(data.petData);
+  } catch (err) {
+    console.log("error :", err);
+  }
+};
+
