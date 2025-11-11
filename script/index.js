@@ -276,3 +276,81 @@ const loadanimalId = async (id) => {
   }
 };
 
+
+const displayAnimaleDatails = (datails) => {
+  const datailsButtonContainer = document.getElementById("AnimalesDatails");
+  // console.log(datails);
+  datailsButtonContainer.innerHTML = "";
+  const div = document.createElement("div");
+  div.innerHTML = `
+  <div>
+      <div class="h-80 ">
+      <img class="h-full w-full object-cover rounded-lg" src="${
+        datails.image
+      }" alt="all-animal-img"/>
+      </div>
+  <h2 class="text-xl font-bold mb-4">${datails.pet_name}</h2>
+  <div class="flex gap-28 my-4">
+   <div class="flex flex-col gap-2">
+        <div class="flex gap-2"><img class="size-5 object-cover rounded-lg"
+       src="https://img.icons8.com/plumpy/24/deviation.png" alt="breed-icon"/> 
+      <p class="text-base text-[#13131370]">Breed : <span>${
+        datails.breed ?? "N/A"
+      }</span>
+     </p> 
+      </div>  
+          <div class="flex gap-2"><img class="size-5 object-cover rounded-lg"
+       src="https://img.icons8.com/windows/32/gender.png" alt="gender-icon"/>
+       <p class="text-base text-[#13131370]">Gender : <span>${
+         datails.gender ?? "Others"
+       }</span> </p>
+       </div>
+            <div class="flex gap-2"><img class="size-5 object-cover rounded-lg"
+       src="https://img.icons8.com/windows/32/gender.png" alt="gender-icon"/>
+       <p class="text-base text-[#13131370]">vaccinated_status : <span>${
+         datails.vaccinated_status ?? "Others"
+       }</span> </p>
+       </div>
+  </div>
+  
+  <div class="flex flex-col gap-2">
+       <div class="flex gap-2"><img class="size-5 object-cover rounded-lg" 
+      src="https://img.icons8.com/material-outlined/48/calendar--v1.png" alt="birth-icon"/>
+       <p class="text-base text-[#13131370]">Birth : <span>${
+         datails.date_of_birth ?? "Date unavailable"
+       }</span> </p>
+       </div>
+       <div class="flex gap-2"><img class="size-5 object-cover rounded-lg"
+       src="https://img.icons8.com/material-outlined/48/us-dollar--v1.png" alt="doller-icon"/> 
+      <p class="text-base text-[#13131370]">Price :  <span>${
+        datails.price ?? "Free"
+      }💲 </p>
+        
+      </span> 
+     </div>
+  </div>
+  </div> 
+
+  <hr/>
+  <div class="py-4">  
+ <h2 class="text-base font-semibold mb-3">Details Information</h2>
+  <p class="text-base text-[#13131370]">${datails.pet_details}</p>
+ 
+</div>
+       <div class="modal-action justify-center w-full">
+              <form method="dialog" class="w-full">
+                <!-- if there is a button in form, it will close the modal -->
+                <button   class="btn w-full bg-[#0E7A8120] text-[#0E7A81]">Close</button>
+              </form>
+        </div> 
+</div>
+`;
+  datailsButtonContainer.appendChild(div);
+  //way 1
+
+  // document.getElementById("showModalData").click();
+
+  // way 2
+
+  document.getElementById("my_modal_5").showModal();
+};
