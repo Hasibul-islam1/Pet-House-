@@ -34,3 +34,57 @@ const displayCatagories = (item) => {
   });
 };
 ////////////////////////////////////////// click pets naem or show pets
+const loadpetsId = async (animalId, clickedButton) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${animalId}`
+    );
+    const data = await res.json();
+    animalLike(data);
+  } catch (error) {
+    console.log("error  :", error);
+  }
+};
+
+const animalLike = (data) => {
+  const likeContainer = document.getElementById("like-animale");
+  // console.log(data.petData);
+  const pet = data.petData;
+  const div = document.createElement("div");
+  div.className = "h-28";
+
+  div.innerHTML = `
+    <img src="${pet.image}" class="w-full h-full object-cover rounded-lg" />
+    `;
+  likeContainer.appendChild(div);
+};
+/////////////////////////////////////////////////
+// sort
+let allPets = []; // global scope e rakha
+const sortByprice = (viewStr) => {
+  if (!viewStr) return 0; // null, undefined, empty string হলে 0 return করো
+  return parseFloat(viewStr.toString().replace(/[^0-9.]/g, ""));
+};
+
+const sortAnimalPrice = () => {
+  const animleContainer = document.getElementById("animale-container");
+
+  // ⏳ Step 1: প্রথমে লোডার দেখাও
+  animleContainer.innerHTML = `
+      <div class="w-full h-full flex justify-center items-center">
+        <span class="loading loading-bars loading-lg text-primary"></span>
+      </div>
+    `;
+  animleContainer.classList.remove("grid");
+  setTimeout(() => {
+    allPets.sort((a, b) => {
+      return sortByprice(b.price) - sortByprice(a.price);
+    });
+    animleContainer.classList.add("grid");
+    // আগে পুরনোগুলো মুছে ফেলো
+    animleContainer.innerHTML = "";
+
+    // তারপর নতুনগুলো দেখাও
+    displyAnimales(allPets);
+  }, 2000);
+};
