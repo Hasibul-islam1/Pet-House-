@@ -176,3 +176,45 @@ const displyAnimales = (animales) => {
     animleContainer.appendChild(div);
   });
 };
+
+// adopt aer jonnno
+///////////////////////////
+const showAdoptModal = (adoptBtn) => {
+  const modal = document.getElementById("my_modal_3");
+  const countdown = document.getElementById("adopt-countdown");
+
+  // id container check pacce ne
+  if (!modal || !countdown || !adoptBtn) {
+    console.error("Modal or button not found!");
+    return;
+  }
+
+  let number = 3;
+  countdown.textContent = number;
+  modal.showModal();
+
+  const adaptId = setInterval(() => {
+    number--;
+    countdown.textContent = number;
+
+    if (number === 0) {
+      clearInterval(adaptId);
+      modal.close();
+
+      adoptBtn.disabled = true;
+      adoptBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+  }, 1000);
+};
+// like to photo add///////////////////////////////////
+const loadpetsId = async (animalId, clickedButton) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${animalId}`
+    );
+    const data = await res.json();
+    animalLike(data);
+  } catch (error) {
+    console.log("error  :", error);
+  }
+};
