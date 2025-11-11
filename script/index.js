@@ -1,11 +1,10 @@
-//
 // loading
 setTimeout(() => {
   const loader = document.getElementById("body-loader");
   loader.style.display = "none";
 }, 2000);
 
-//
+//api load
 const loadAnimalCatagories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
     .then((res) => res.json())
@@ -15,7 +14,7 @@ const loadAnimalCatagories = () => {
 
 const displayCatagories = (item) => {
   const CatagoryContainer = document.getElementById("animale-catagories");
-  CatagoryContainer.innerHTML = ""; // আগেরগুলা ক্লিয়ার করো
+  CatagoryContainer.innerHTML = ""; // full box clear 
 
   item.forEach((category) => {
     const btn = document.createElement("button");
@@ -35,34 +34,35 @@ const displayCatagories = (item) => {
     CatagoryContainer.appendChild(btn);
   });
 };
-////////////////////////////////////////// click pets naem or show pets
+/////click pets naem or show pets
 const loadCatagoriesName = (name) => {
   const animleContainer = document.getElementById("animale-container");
 
   animleContainer.classList.remove("grid");
 
-  // ধাপ ১: কন্টেইনার খালি করে সেখানে সরাসরি একটি লোডার বসিয়ে দিন
+  // step one : clear full continer and set up loder 
+
   animleContainer.innerHTML = `
     <div class="w-full h-full flex justify-center items-center">
       <span class="loading loading-bars loading-lg text-primary"></span>
     </div>
   `;
 
-  // ধাপ ২: দুটি Promise তৈরি করা
-  // Promise 1: API থেকে ডেটা আনা
+  // step 02: make tow Promise 
+  // Promise 1:take data on Api 
   const fetchData = fetch(
     `https://openapi.programming-hero.com/api/peddy/category/${name}`
   ).then((res) => res.json());
 
-  // Promise 2: ২ সেকেন্ডের একটি ডিলে তৈরি করা
+  // Promise 2: make ২ secend diele 
   const delay = new Promise((resolve) => setTimeout(resolve, 2000)); // 2000ms = 2 সেকেন্ড
 
   // Promise.all() হল JavaScript-এর একটি powerful utility যেটা একাধিক Promise একসাথে parallel ভাবে run করে এবং সবগুলো resolve হলে রেজাল্ট দেয়।
-  // ধাপ ৩: Promise.all() দিয়ে দুটি কাজই শেষ হওয়ার জন্য অপেক্ষা করা
+  // step 03: Promise.all() wait for complete 2 task 
   Promise.all([fetchData, delay])
     .then(([dataResult]) => {
-      // যখন ডেটা এবং ডিলে দুটোই সম্পন্ন হবে, তখন এই কোড চলবে
-      // dataResult হলো fetchData থেকে পাওয়া ডেটা
+      // when data lode and dele are complete then code run 
+      // dataResult is take in  a fetchData 
       displyAnimales(dataResult.data);
     })
 
@@ -70,9 +70,8 @@ const loadCatagoriesName = (name) => {
 };
 loadAnimalCatagories();
 
-//////////////////////////////////
 
-// all animals load////////////////////
+// all animals load
 const loadAllAnimales = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
@@ -167,9 +166,9 @@ const displyAnimales = (animales) => {
       loadpetsId(animal.petId, btn); // prottek ta animl abong btn a click kora hoice
     });
 
-    const adoptBtn = div.querySelector(".adopt-btn"); // ⬅️ adopt button টা খুঁজে আনলাম
+    const adoptBtn = div.querySelector(".adopt-btn"); // ⬅️  get adopt button 
 
-    // ⬇️ এখন ইভেন্ট বসাও
+    // ⬇️ now add event add 
     adoptBtn.addEventListener("click", () => {
       showAdoptModal(adoptBtn); // ⬅️ এই adopt button কে পাঠাচ্ছি
     });
@@ -254,10 +253,10 @@ const sortAnimalPrice = () => {
       return sortByprice(b.price) - sortByprice(a.price);
     });
     animleContainer.classList.add("grid");
-    // আগে পুরনোগুলো মুছে ফেলো
+    // remove all content 
     animleContainer.innerHTML = "";
 
-    // তারপর নতুনগুলো দেখাও
+    // show new itme
     displyAnimales(allPets);
   }, 2000);
 };
